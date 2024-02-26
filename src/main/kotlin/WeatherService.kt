@@ -11,7 +11,7 @@ private val gson = Gson()
 private val client = OkHttpClient()
 
 // API key for accessing the OpenWeatherMap API
-private const val OPENWEATHER_API_KEY = "c6d815e64eccbf4798a3becfb920dfd4"
+private const val OPENWEATHER_API_KEY = "openweatherAPI-key"
 
 /**
  * Retrieves weather data from the OpenWeatherMap API based on the user input.
