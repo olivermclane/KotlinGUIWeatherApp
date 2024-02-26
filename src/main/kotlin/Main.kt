@@ -31,6 +31,7 @@ fun showIntroduction() {
     val titleLabel = JLabel("Kotlin Weather App")
     titleLabel.font = Font("Arial", Font.BOLD, 24)
     titleLabel.alignmentX = Component.CENTER_ALIGNMENT
+    //Messing with in-line html on JLabels (this is cool)
     val descriptionLabel = JLabel("<html>This application retrieves current weather conditions<br>from OpenWeatherMap API.</html>")
     descriptionLabel.alignmentX = Component.CENTER_ALIGNMENT
     val instructionLabel = JLabel("<html>Please enter the city, state, and country code to get started. <br>To quit the application simply press Quit at the bottom</html>")
