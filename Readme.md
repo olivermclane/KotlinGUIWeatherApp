@@ -1,5 +1,5 @@
 # Kotlin Weather GUI
-This program allows users to query current weather conditions using the OpenWeatherMap API based on the state code, country code, and city. Providing the results in a GUI with a icon of the current conditions.
+This program allows users to query current weather conditions using the OpenWeatherMap API based on the state code, country code, and city. Providing the results in a GUI with a icon of the current conditions followed by the different weather stats.
 
 ## Prerequisites
 
