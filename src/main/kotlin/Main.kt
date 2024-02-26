@@ -138,13 +138,15 @@ fun startMainApplication() {
         val city    = cityField.text
         val state = stateField.text
         val country = countryField.text
+        //Check if City or Country are empty fields as they are required
         if (city.trim().isEmpty() || country.trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                 null,
-                "Please provide the latest city and country code.",
+                "Please provide the city and country code.",
                 "Error",
                 JOptionPane.ERROR_MESSAGE
             );
+            // Check that country code is a valid ISO 3166-1 alpha-2 format
         } else if (!isValidCountryCode(country)) {
             JOptionPane.showMessageDialog(
                 null,
@@ -152,6 +154,7 @@ fun startMainApplication() {
                 "Error",
                 JOptionPane.ERROR_MESSAGE
             );
+            //Validate the city doesn't contain numerics
         } else if (!isValidCityName(city)) {
             JOptionPane.showMessageDialog(
                 null,
@@ -159,6 +162,7 @@ fun startMainApplication() {
                 "Error",
                 JOptionPane.ERROR_MESSAGE
             );
+            //Continue if validation is met
         } else {
             val userInput = UserInput(city, state, country)
             val weatherData = getWeatherData(userInput)
