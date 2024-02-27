@@ -8,7 +8,6 @@ import java.awt.*
 import java.net.URL
 import javax.swing.*
 import kotlin.system.exitProcess
-import WeatherExport
 
 fun main() {
     showIntroduction()
