@@ -216,7 +216,7 @@ fun displayWeatherData(weatherData: WeatherData, displayArea: JTextArea, weather
 
     displayArea.text = formattedWeatherInfo
 
-    val iconUrl = getIconUrl(weatherData.weatherCode) // Assuming it's day
+    val iconUrl = getIconUrl(weatherData.weatherCode)
     weatherIconLabel.icon = ImageIcon(iconUrl)
 }
 
