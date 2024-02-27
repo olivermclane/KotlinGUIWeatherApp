@@ -8,6 +8,7 @@ import java.awt.*
 import java.net.URL
 import javax.swing.*
 import kotlin.system.exitProcess
+import WeatherExport
 
 fun main() {
     showIntroduction()
@@ -32,9 +33,11 @@ fun showIntroduction() {
     titleLabel.font = Font("Arial", Font.BOLD, 24)
     titleLabel.alignmentX = Component.CENTER_ALIGNMENT
     //Messing with in-line html on JLabels (this is cool)
-    val descriptionLabel = JLabel("<html>This application retrieves current weather conditions<br>from OpenWeatherMap API.</html>")
+    val descriptionLabel =
+        JLabel("<html>This application retrieves current weather conditions<br>from OpenWeatherMap API.</html>")
     descriptionLabel.alignmentX = Component.CENTER_ALIGNMENT
-    val instructionLabel = JLabel("<html>Please enter the city, state, and country code to get started. <br>To quit the application simply press Quit at the bottom</html>")
+    val instructionLabel =
+        JLabel("<html>Please enter the city, state, and country code to get started. <br>To quit the application simply press Quit at the bottom</html>")
     instructionLabel.alignmentX = Component.CENTER_ALIGNMENT
 
     // Add components to the introduction panel
@@ -92,10 +95,28 @@ fun startMainApplication() {
     weatherIconPanel.add(weatherIconLabel)
 
 
+    // Create an export button
+    val exportButton = JButton("Export to CSV")
+    exportButton.alignmentX = Component.CENTER_ALIGNMENT
+    exportButton.addActionListener {
+        val weatherData = displayArea.text
+        WeatherExport.exportWeatherDataToCSV(weatherData)
+    }
 
+    // Create a Quit button
+    val quitButton = JButton("Quit")
+    quitButton.alignmentX = Component.CENTER_ALIGNMENT
+    quitButton.addActionListener {
+        exitProcess(0)
+    }
 
-    val close = JButton("Quit");
-
+    // Add components to the frame
+    val buttonPanel = JPanel()
+    buttonPanel.layout = BoxLayout(buttonPanel, BoxLayout.LINE_AXIS)
+    buttonPanel.add(Box.createHorizontalGlue()) // Pushes buttons to the right
+    buttonPanel.add(exportButton)
+    buttonPanel.add(Box.createRigidArea(Dimension(10, 0))) // Add some spacing between buttons
+    buttonPanel.add(quitButton)
 
     displayArea.isEditable = false
 
@@ -125,18 +146,13 @@ fun startMainApplication() {
 
     frame.add(inputPanel, BorderLayout.NORTH)
     frame.add(JScrollPane(displayArea), BorderLayout.CENTER)
-    frame.add(close, BorderLayout.AFTER_LAST_LINE)
     frame.add(weatherIconPanel, BorderLayout.WEST) // Add weather icon label
+    frame.add(buttonPanel, BorderLayout.SOUTH)
 
-
-    // Add action listener to close button
-    close.addActionListener{
-        exitProcess(0)
-    }
 
     // Add action listener to the query button
     queryButton.addActionListener {
-        val city    = cityField.text
+        val city = cityField.text
         val state = stateField.text
         val country = countryField.text
         //Check if City or Country are empty fields as they are required

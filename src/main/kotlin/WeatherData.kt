@@ -23,5 +23,4 @@ data class WeatherData(
     val city: String,
     val countryCode: String,
     val weatherCode: String
-
 )
