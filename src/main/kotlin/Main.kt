@@ -187,18 +187,18 @@ fun startMainApplication() {
  * @param displayArea The JTextArea to display the weather data.
  */
 fun displayWeatherData(weatherData: WeatherData, displayArea: JTextArea, weatherIconLabel: JLabel) {
-    val weatherInfo = """
-        |Current conditions in ${weatherData.city}:
-        |Temperature Low: ${weatherData.lowTemp} fahrenheit
-        |Temperature High: ${weatherData.highTemp} fahrenheit
-        |Temperature: ${weatherData.temperature} fahrenheit
-        |Feels Like: ${weatherData.feltTemp} fahrenheit
-        |Weather: ${weatherData.weatherDescription}
-        |Humidity: ${weatherData.humidity}%
-        |Wind Speed: ${weatherData.windSpeed}/mph
-    """.trimMargin()
+    val formattedWeatherInfo = buildString {
+        appendLine("Weather Report for: ${weatherData.city}")
+        appendLine("Temperature Low: ${weatherData.lowTemp} Fahrenheit")
+        appendLine("Temperature High: ${weatherData.highTemp} Fahrenheit")
+        appendLine("Temperature: ${weatherData.temperature} Fahrenheit")
+        appendLine("Feels Like: ${weatherData.feltTemp} Fahrenheit")
+        appendLine("Weather: ${weatherData.weatherDescription}")
+        appendLine("Humidity: ${weatherData.humidity}%")
+        appendLine("Wind Speed: ${weatherData.windSpeed} mph")
+    }
 
-    displayArea.text = weatherInfo
+    displayArea.text = formattedWeatherInfo
 
     val iconUrl = getIconUrl(weatherData.weatherCode) // Assuming it's day
     weatherIconLabel.icon = ImageIcon(iconUrl)
